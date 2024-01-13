@@ -154,5 +154,28 @@ public class CalculatorTest {
 
 
     }
+    @Test
+    public void testCalcSkalarPos() throws Exception {
+        Calculator calc = new CalculatorImpl();
+        calc.push(1.0);
+        calc.push(3.0);
+        calc.push(2.0);
+        calc.push(4.0);
+        calc.push(2.0);
+        double result = calc.perform(Operation.dp);
+        assertEquals(14,result,0);
+
+    }
+    @Test
+    public void testCalcSkalarNeg() throws Exception {
+            Calculator calc = new CalculatorImpl();
+            calc.push(7.0);
+            calc.push(8.0);
+            calc.push(4.0);
+            calc.push(4.0);
+            calc.push(2.0);
+            double result = calc.perform(Operation.dp);
+            assertNotEquals(1,result,0);
+    }
 
 }
