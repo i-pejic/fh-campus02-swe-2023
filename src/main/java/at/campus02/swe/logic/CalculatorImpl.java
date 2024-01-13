@@ -4,6 +4,7 @@ package at.campus02.swe.logic;
 import at.campus02.swe.Calculator;
 import at.campus02.swe.CalculatorException;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
@@ -24,8 +25,7 @@ public class CalculatorImpl implements Calculator {
     public double perform(Operation op) throws CalculatorException {
 
         switch (op){
-            case sin -> push(0);
-            case cos -> push(0);
+            case sin, cos, dp -> push(0);
         }
 
 
@@ -52,6 +52,8 @@ public class CalculatorImpl implements Calculator {
                 return Math.cos(a);
             case rnd:
                 return generateRandomNumber(a,b);
+            case dp:
+                return generateDotProduct((int)a);
         }
         return 0;
     }
@@ -70,6 +72,27 @@ public class CalculatorImpl implements Calculator {
 
         int result = random.nextInt((int)maximum + 1 - (int)minimum) + (int)minimum;
         return result;
+    }
+
+    public int generateDotProduct(int numberOfElements) throws CalculatorException {
+        ArrayList<Integer> firstScalar = new ArrayList<>();
+        ArrayList<Integer> secondScalar = new ArrayList<>();
+
+        int dotProduct = 0;
+
+        for(int i = numberOfElements; i > 0; i--){
+            firstScalar.add((int)pop());
+        }
+
+        for(int i = numberOfElements; i > 0; i--){
+            secondScalar.add((int)pop());
+        }
+
+        for(int i = (numberOfElements - 1); i >= 0; i--){
+            dotProduct += firstScalar.get(i) * secondScalar.get(i);
+        }
+
+        return dotProduct;
     }
 
     @Override

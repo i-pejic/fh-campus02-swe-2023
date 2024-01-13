@@ -3,7 +3,7 @@ package at.campus02.swe;
 public interface Calculator {
 
     enum Operation {
-        add, sub, mul, div, sin, cos, mod, rnd
+        add, sub, mul, div, sin, cos, mod, rnd, dp
     };
 
     void push(double value);
