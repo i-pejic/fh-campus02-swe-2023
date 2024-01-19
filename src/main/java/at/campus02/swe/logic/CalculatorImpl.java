@@ -103,6 +103,16 @@ public class CalculatorImpl implements Calculator {
     }
 
     @Override
+    public void store() throws CalculatorException {
+        //do_nothing
+    }
+
+    @Override
+    public void load() throws CalculatorException {
+        //do_nothing
+    }
+
+    @Override
     public void push(double v) {
         stack_.push(v);
     }
