@@ -26,6 +26,7 @@ public class Parser {
             XMLStreamException, CalculatorException {
 
         double result = 0;
+        double storedValue = 0;
         XMLEventReader r = createXmlEventReader(calculation);
 
         while (r.hasNext()) {
@@ -42,6 +43,12 @@ public class Parser {
             } else if ("pop"
                     .equals(e.asStartElement().getName().getLocalPart())) {
                 calc_.pop();
+            } else if ("store"
+                    .equals(e.asStartElement().getName().getLocalPart())) {
+                storedValue = result;
+            } else if ("load"
+                    .equals(e.asStartElement().getName().getLocalPart())) {
+                result = storedValue;
             } else if ("operation".equals(e.asStartElement().getName()
                     .getLocalPart())) {
                 result = calc_.perform(readOperation(value));
