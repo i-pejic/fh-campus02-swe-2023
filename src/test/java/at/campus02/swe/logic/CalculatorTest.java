@@ -174,15 +174,15 @@ public class CalculatorTest {
     }
 
     @Test
-    void testStoreAndLoad() {
+    public void testStoreAndLoad() throws Exception{
         CalculatorStore calculatorStore = new CalculatorStore();
         calculatorStore.storeValue("A", 42.0);
         double loadedValue = calculatorStore.loadValue("A");
-        assertEquals(42.0, loadedValue);
+        assertEquals(42.0, loadedValue, 0);
     }
 
     @Test
-    void testLoadInvalidName() {
+    public void testLoadInvalidName() throws Exception{
         CalculatorStore calculatorStore = new CalculatorStore();
         assertThrows(CalculatorException.class, () -> calculatorStore.loadValue("InvalidName"));
     }
