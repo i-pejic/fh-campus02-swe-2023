@@ -1,17 +1,11 @@
 package at.campus02.swe.logic;
 
+import at.campus02.swe.Calculator;
+import at.campus02.swe.Calculator.Operation;
+import at.campus02.swe.CalculatorException;
 import org.junit.Test;
 
-import at.campus02.swe.Calculator;
-import at.campus02.swe.CalculatorException;
-import at.campus02.swe.Calculator.Operation;
-
-
-import java.util.Random;
-
-import static at.campus02.swe.Calculator.Operation.rnd;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 public class CalculatorTest {
 
@@ -38,9 +32,6 @@ public class CalculatorTest {
         assertEquals(3, result, 0);
 
     }
-
-
-
 
 
     //
@@ -71,7 +62,6 @@ public class CalculatorTest {
         }
 
 
-
     }
 
     @Test
@@ -85,6 +75,7 @@ public class CalculatorTest {
         assertEquals(0, result, 0);
 
     }
+
     @Test
     public void testSimpleModuloOperation2() throws Exception {
 
@@ -96,6 +87,7 @@ public class CalculatorTest {
         assertEquals(1, result, 0);
 
     }
+
     @Test
     public void testSimpleModuloOperationNegative() throws Exception {
 
@@ -104,7 +96,7 @@ public class CalculatorTest {
         calc.push(2);
         double result = calc.perform(Operation.mod);
 
-        assertNotEquals(1,result,0);
+        assertNotEquals(1, result, 0);
 
     }
 
@@ -115,7 +107,7 @@ public class CalculatorTest {
         calc.push(90.0);
         double result = calc.perform(Operation.sin);
 
-        assertNotEquals(1,result,0);
+        assertNotEquals(1, result, 0);
 
     }
 
@@ -126,7 +118,7 @@ public class CalculatorTest {
         calc.push(90.0);
         double result = calc.perform(Operation.cos);
 
-        assertNotEquals(0,result,0);
+        assertNotEquals(0, result, 0);
 
     }
 
@@ -138,10 +130,11 @@ public class CalculatorTest {
         calc.push(18.0);
         double result = calc.perform(Operation.rnd);
 
-        assertEquals(9,result,0);
+        assertEquals(9, result, 0);
 
 
     }
+
     @Test
     public void testRandomMaxMin() throws Exception {
 
@@ -150,10 +143,11 @@ public class CalculatorTest {
         calc.push(8.0);
         double result = calc.perform(Operation.rnd);
 
-        assertEquals(10,result,0);
+        assertEquals(10, result, 0);
 
 
     }
+
     @Test
     public void testCalcSkalarPos() throws Exception {
         Calculator calc = new CalculatorImpl();
@@ -163,19 +157,34 @@ public class CalculatorTest {
         calc.push(4.0);
         calc.push(2.0);
         double result = calc.perform(Operation.dp);
-        assertEquals(14,result,0);
+        assertEquals(14, result, 0);
 
     }
+
     @Test
     public void testCalcSkalarNeg() throws Exception {
-            Calculator calc = new CalculatorImpl();
-            calc.push(7.0);
-            calc.push(8.0);
-            calc.push(4.0);
-            calc.push(4.0);
-            calc.push(2.0);
-            double result = calc.perform(Operation.dp);
-            assertNotEquals(1,result,0);
+        Calculator calc = new CalculatorImpl();
+        calc.push(7.0);
+        calc.push(8.0);
+        calc.push(4.0);
+        calc.push(4.0);
+        calc.push(2.0);
+        double result = calc.perform(Operation.dp);
+        assertNotEquals(1, result, 0);
+    }
+
+    @Test
+    public void testStoreAndLoad() throws Exception{
+        CalculatorStore calculatorStore = new CalculatorStore();
+        calculatorStore.storeValue("A", 42.0);
+        double loadedValue = calculatorStore.loadValue("A");
+        assertEquals(42.0, loadedValue, 0);
+    }
+
+    @Test
+    public void testLoadInvalidName() throws Exception{
+        CalculatorStore calculatorStore = new CalculatorStore();
+        assertThrows(CalculatorException.class, () -> calculatorStore.loadValue("InvalidName"));
     }
 
 }

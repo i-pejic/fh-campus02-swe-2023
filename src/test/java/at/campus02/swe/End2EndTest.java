@@ -9,8 +9,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public class End2EndTest {
     @Test
@@ -25,7 +23,8 @@ public class End2EndTest {
 
     @Test
     public void testStoreLoad() throws Exception {
-        testAddE2E("src/test/resources/test12.xml");
+        testAddE2E("src/test/resources/test14.xml");
+ 
     }
 
     public void testAddE2E(String fileName) throws CalculatorException, XMLStreamException, FileNotFoundException {
