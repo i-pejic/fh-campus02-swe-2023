@@ -4,13 +4,13 @@ import at.campus02.swe.Calculator;
 import at.campus02.swe.Calculator.Operation;
 import at.campus02.swe.CalculatorException;
 
+import javax.xml.namespace.QName;
+import javax.xml.stream.*;
+import javax.xml.stream.events.Attribute;
+import javax.xml.stream.events.XMLEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-
-import javax.xml.namespace.QName;
-import javax.xml.stream.*;
-import javax.xml.stream.events.*;
 
 public class Parser {
 
@@ -86,7 +86,7 @@ public class Parser {
         else if ("-".equals(value))
             return Operation.sub;
         else if ("%".equals(value))
-            return  Operation.mod;
+            return Operation.mod;
         else if ("sin".equals(value))
             return Operation.sin;
         else if ("cos".equals(value))
@@ -95,6 +95,9 @@ public class Parser {
             return Operation.rnd;
         else if ("dp".equals(value))
             return Operation.dp;
+        else if ("store".equals(value)) calc_.store();
+        else if ("load".equals(value)) calc_.load();
+
 
         throw new CalculatorException("Unsupported Operation!");
     }
