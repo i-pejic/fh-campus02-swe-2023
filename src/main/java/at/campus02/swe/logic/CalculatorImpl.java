@@ -10,7 +10,9 @@ import java.util.Stack;
 
 public class CalculatorImpl implements Calculator {
 
+
     private CalculatorStore calculatorStore = new CalculatorStore();
+
     private Stack<Double> stack_ = new Stack<Double>();
     private Random random;
 
@@ -104,6 +106,7 @@ public class CalculatorImpl implements Calculator {
     }
 
     @Override
+
     public void store(String name) throws CalculatorException {
         if (stack_.isEmpty()) {
             throw new CalculatorException("Cannot store empty stack");
@@ -116,6 +119,7 @@ public class CalculatorImpl implements Calculator {
     public void load(String name) throws CalculatorException {
         double loadedValue = calculatorStore.loadValue(name);
         stack_.push(loadedValue);
+
     }
 
     @Override

@@ -24,6 +24,7 @@ public class End2EndTest {
     @Test
     public void testStoreLoad() throws Exception {
         testAddE2E("src/test/resources/test14.xml");
+ 
     }
 
     public void testAddE2E(String fileName) throws CalculatorException, XMLStreamException, FileNotFoundException {
@@ -37,6 +38,9 @@ public class End2EndTest {
             assertEquals(3, result, 0);
         } else if ("src/test/resources/test07.xml".equals(fileName)) {
             assertEquals(6, result, 0);
+        } else if ("src/test/resources/test12.xml".equals(fileName)) {
+            assertEquals(65, result, 0);
         }
     }
+
 }
